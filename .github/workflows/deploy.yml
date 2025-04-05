@@ -1,0 +1,58 @@
+name: Publish Package to npm and pip
+
+on:
+  push:
+    branches:
+      - main
+permissions: write-all
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Cargo tarpaulin
+        run: cargo install cargo-tarpaulin
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
+      - uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: 'latest'
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install pnpm
+        run: pnpm i
+      - name: Build
+        run: |
+          pnpm build
+          uv sync --all-packages --reinstall
+      - name: Test
+        run: pnpm test
+      - name: Publish to npm and pypi
+        run: |
+          # for gen pyi
+          pnpm build
+          cd libs/python
+          uv publish
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      - name: Publish to npm
+        run: |
+          cd libs/node
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
