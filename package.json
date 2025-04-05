@@ -6,5 +6,6 @@
     "scripts": {
         "test": "cargo test && cd libs/node && wasm-pack test --node && cd ../../ && cd libs/python && cargo test --no-default-features && cd ../.. && pnpm -r test && pytest",
         "build": "cd libs/node && wasm-pack build --target nodejs --out-dir ./pkg --out-name index && node script.js && cd ../../ && cd libs/python && maturin build --release --out dist"
-    }
+    },
+    "packageManager": "pnpm@10.17.1"
 }
