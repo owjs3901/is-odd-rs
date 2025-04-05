@@ -35,6 +35,8 @@ jobs:
           node-version: 22
           cache: 'pnpm'
       - name: Install pnpm
+        run: pip install maturin
+      - name: Install pnpm
         run: pnpm i
       - name: Build
         run: |
