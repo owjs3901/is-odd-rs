@@ -1,0 +1,28 @@
+{
+  "name": "is-odd-rs",
+  "collaborators": [
+    "owjs3901 <owjs3901@naver.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "pkg/index_bg.wasm",
+    "pkg/index_bg.wasm.d.ts",
+    "pkg/index.js",
+    "pkg/index.d.ts",
+    "pkg/package.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "main": "./pkg/index.js",
+  "module": "./pkg/index.js",
+  "exports": {
+    ".": {
+      "import": "./pkg/index.js",
+      "require": "./pkg/index.js",
+      "types": "./pkg/index.d.ts"
+    }
+  },
+  "types": "./pkg/index.d.ts"
+}

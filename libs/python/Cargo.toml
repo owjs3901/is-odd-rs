@@ -1,0 +1,15 @@
+[package]
+name = "is-odd-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "is_odd_rs"
+crate-type = ["cdylib"]
+
+
+[dependencies]
+pyo3 = { version = "0.23.3", features = ["experimental-inspect"] }
+pyo3-stub-gen = "0.7.0"
+is-odd-rs-core = { path = "../core" }

@@ -1,0 +1,10 @@
+{
+    "name": "is-odd-rs-workspace",
+    "version": "1.0.0",
+    "description": "A Rust library to check if a number is odd",
+    "main": "index.js",
+    "scripts": {
+        "test": "cargo test && cd libs/node && wasm-pack test --node && cd ../../ && cd libs/python && cargo test --no-default-features && cd ../.. && pnpm -r test && pytest",
+        "build": "cd libs/node && wasm-pack build --target nodejs --out-dir ./pkg --out-name index && node script.js && cd ../../ && cd libs/python && maturin build --release --out dist"
+    }
+}

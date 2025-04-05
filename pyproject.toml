@@ -1,0 +1,10 @@
+[project]
+name = "is-odd-rs-workspace"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+[tool.uv.workspace]
+members = ["libs/python","examples/python"]
+
+[dependency-groups]
+dev = ["pytest"]

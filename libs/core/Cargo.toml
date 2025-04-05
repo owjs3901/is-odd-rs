@@ -1,0 +1,3 @@
+[package]
+name = "is-odd-rs-core"
+edition = "2024"

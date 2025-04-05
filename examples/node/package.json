@@ -1,0 +1,18 @@
+{
+    "type": "module",
+    "name": "node-example",
+    "version": "1.0.0",
+    "description": "A simple example of using the Rust library in Node.js",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "vitest --run --globals"
+    },
+    "dependencies": {
+        "is-odd-rs": "workspace:*"
+    },
+    "devDependencies": {
+        "typescript": "^5.8.3",
+        "vitest": "^3.1.1"
+    }
+}
