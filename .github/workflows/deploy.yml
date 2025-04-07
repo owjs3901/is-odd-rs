@@ -34,7 +34,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           node-version: 22
           cache: 'pnpm'
-      - name: Install pnpm
+      - name: Install pip
         run: pip install maturin
       - name: Install pnpm
         run: pnpm i
